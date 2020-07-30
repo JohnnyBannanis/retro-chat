@@ -1,17 +1,23 @@
 body {
     font-family: 'Nunito', sans-serif;
-    background: black;
+    background-image: url("https://thumbs.dreamstime.com/b/pixel-art-seamless-pattern-brick-texture-pixel-art-seamless-pattern-brick-texture-vector-illustration-180017709.jpg");
     color: white;
 }
 
 #chat-container {
+    background-color: white;
     max-width: 600px;
     margin: 30px auto;
 }
 
 #users-container {
+    background-color: white;
     max-width: 600px;
     margin: 30px auto;
+    padding-left: 20px;
+}
+#users-list{
+    padding-left: 0px;
 }
 
 input {
@@ -22,8 +28,8 @@ input {
 }
 
 #output {
-    overflow-y: scroll; 
-    height:190px;
+    overflow-y: auto; 
+    height:340px;
 }
 
 button {
@@ -36,6 +42,14 @@ button {
     cursor: pointer;
 }
 
-.nes-radio {
-    
+
+.modal {
+    display: none; /* Hidden by default */
+    z-index: 1; /* Sit on top */
+    background-color: white;
+    }
+.modal-style{
+    max-width: 800px;
+    margin: 30px auto;
+    margin-top: 120px !important;
 }

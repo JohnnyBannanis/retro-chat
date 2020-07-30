@@ -6,50 +6,83 @@
     <title>WeSo</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
 <body>
+
+    <!-- Cargar html en el orden que se escribio -->
     
+    <div id="nes-modal" class="modal">
+        <center>
+            <div class="nes-container is-rounded modal-style">
+                <form>
+                    <p class="title">WELLCOME PLAYER</p>
+                    <p>PLEASE INSERT A USER NAME.</p>
+                    <input type="text" id="username" placeholder="USERNAME" class="nes-input">
+                    <br>
+                    <button id="start" class="nes-btn is-primary" type="button">START</button>
+                </form>
+            </div>
+        </center>
+    </div>
+
     <center> 
-    <div class="nes-container is-rounded is-dark" style="max-width: 600px; margin-top: 20px;" >
-        <center><h1>WeSo Chat</h1></center>
-    </div>
+        <div class="nes-container is-rounded is-dark" style="max-width: 600px; margin-top: 20px;" >
+            <center><h1>WeSo Chat</h1></center>
+        </div>
     </center>
-    
-    <div id="users-container" class="nes-container is-dark with-title">
-        <p class="title">Users</p>
-        <label>
-            <input type="radio" class="nes-radio is-dark" name="answer-dark" />
-            <span>Johnny</span>  
-        </label>
-        <label>
-            <input type="radio" class="nes-radio is-dark" name="answer-dark" />
-            <span>SolleL</span>  
-        </label>
-        <label>
-            <input type="radio" class="nes-radio is-dark" name="answer-dark" />
-            <span>Bannanis</span>  
-        </label>
-    </div>
-      
-    <div id="chat-container" class="nes-container with-title is-centered">
-        <p class="title">Chat</p>
-        <div id="chat-window">
-            <div id="output"> 
+
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <div id="users-container" class="nes-container with-title">
+                    <p class="title">Users</p>
+                    <div class="lists">
+                        <ul id="users-list" class="nes-list">
+                            <li>
+                                <label>
+                                    <input type="radio" class="nes-radio is-white" name="answer-dark" />
+                                    <span>Johnny Bannanis</span>  
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" class="nes-radio is-white" name="answer-dark" />
+                                    <span>SoleeL</span>  
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" class="nes-radio is-white" name="answer-dark" />
+                                    <span>Cacun</span>  
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-8">
+                <div id="chat-container" class="nes-container with-title is-centered">
+                    <p class="title">Chat</p>
+                    <div id="chat-window">
+                        <div id="output">
+                        </div>
+                    </div>
+                    <div class="nes-field">
+                        <label for="message">Message</label>
+                        <input type="text" id="message" class="nes-input">
+                    </div>
+                    <br>
+                    <button id="send" class="nes-btn is-primary"s>Send</button>
+                </div>
             </div>
         </div>
-        <div class="nes-field">
-            <label for="username">User</label>
-            <input type="text" id="username" class="nes-input">
-        </div>
-        <div class="nes-field">
-            <label for="message">Message</label>
-            <input type="text" id="message" class="nes-input">
-        </div>
-        <button id="send" class="nes-btn is-primary"s>Send</button>
-    </div>
+    </div>    
 
     <script src="/socket.io/socket.io.js" charset="utf-8"></script>
     <script src="chat.js" charset="utf-8"></script>
+
 </body>
 </html>
