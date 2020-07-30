@@ -17,6 +17,8 @@ const server = app.listen(app.get('port'), () => {
 const SocketIO = require('socket.io');
 const io = SocketIO(server);
 
+let users = [];
+
 io.on('connection', (socket) => {
     console.log('New connection', socket.id)
     socket.on('chat_message', (data) => {

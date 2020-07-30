@@ -4,21 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeSo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="main.css">
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 </head>
 <body>
-    <center><h1>WeSo Chat</h1></center>
-
-    <div id="chat-container">
+    
+    <center> 
+    <div class="nes-container is-rounded is-dark" style="max-width: 600px; margin-top: 20px;" >
+        <center><h1>WeSo Chat</h1></center>
+    </div>
+    </center>
+    
+    <div id="users-container" class="nes-container is-dark with-title">
+        <p class="title">Users</p>
+        <label>
+            <input type="radio" class="nes-radio is-dark" name="answer-dark" />
+            <span>Johnny</span>  
+        </label>
+        <label>
+            <input type="radio" class="nes-radio is-dark" name="answer-dark" />
+            <span>SolleL</span>  
+        </label>
+        <label>
+            <input type="radio" class="nes-radio is-dark" name="answer-dark" />
+            <span>Bannanis</span>  
+        </label>
+    </div>
+      
+    <div id="chat-container" class="nes-container with-title is-centered">
+        <p class="title">Chat</p>
         <div id="chat-window">
-            <div id="output"></div>s
-            <div id="actions"></div>
+            <div id="output"> 
+            </div>
         </div>
-        <input type="text" id="username" placeholder="Username">
-        <input type="text" id="message" placeholder="Message">
-        <button id="send"s>Send</button>
-
+        <div class="nes-field">
+            <label for="username">User</label>
+            <input type="text" id="username" class="nes-input">
+        </div>
+        <div class="nes-field">
+            <label for="message">Message</label>
+            <input type="text" id="message" class="nes-input">
+        </div>
+        <button id="send" class="nes-btn is-primary"s>Send</button>
     </div>
 
     <script src="/socket.io/socket.io.js" charset="utf-8"></script>
