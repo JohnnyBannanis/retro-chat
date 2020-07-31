@@ -16,12 +16,14 @@
     <div id="nes-modal" class="modal">
         <center>
             <div class="nes-container is-rounded modal-style">
-                <form>
+                <form id="userform" onSubmit="return false;">
                     <p class="title">WELLCOME PLAYER</p>
                     <p>PLEASE INSERT A USER NAME.</p>
                     <input type="text" id="username" placeholder="USERNAME" class="nes-input">
+                    <div id="usererror">
+                    </div>
                     <br>
-                    <button id="start" class="nes-btn is-primary" type="button">START</button>
+                    <button type="button" id="start" class="nes-btn is-primary">START</button>
                 </form>
             </div>
         </center>
@@ -66,18 +68,19 @@
             <div class="col-8">
                 <div id="chat-container" class="nes-container with-title is-centered">
                     <p class="title">Chat</p>
-                    <div id="chat-window">
-                        <div id="output">
+                    <section class="nes-container" stylpe="text-align: left;">
+                        <div class="message-list" id="output">
                         </div>
-                    </div>
+                    </section>
                     <div class="nes-field">
                         <label for="message">Message</label>
                         <input type="text" id="message" class="nes-input">
                     </div>
                     <br>
-                    <button id="send" class="nes-btn is-primary"s>Send</button>
+                    <button id="send" type="button" class="nes-btn is-primary">Send</button>
                 </div>
             </div>
+
         </div>
     </div>    
 
