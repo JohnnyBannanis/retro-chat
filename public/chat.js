@@ -26,8 +26,12 @@ press.addEventListener('click', function () {
         socket.emit('new_user', username.value, function(data){
             console.log(data);
             if (data) {
-                logged_user= username.value;
-                modal.style.display = "none";
+                if(username.value.length <9){
+                    logged_user= username.value;
+                    modal.style.display = "none";
+                }else{
+                    usererror.innerHTML = `<p class = "nes-text is-error"> That username is too long, Try a shorter one (less than 9 chars) </p>`;
+                };
             } else {
                 usererror.innerHTML = `<p class = "nes-text is-error"> That username is already taken </p>`;
             };
@@ -59,21 +63,22 @@ message.addEventListener('keyup', (e) => {
 }, false);
 
 socket.on('chat:message', function(data){
-    output.insertAdjacentHTML("afterBegin",
+    output.insertAdjacentHTML("beforeend",
     `
-    <div class="message -right" style="float:right">
-        <div class="nes-balloon from-right nes-pointer">
+    <div class="message -left">
+        <div class="nes-balloon from-left">
             <strong>${data.username}</strong>: ${data.message}
         </div>
     </div>`);
     message.value = "";
+    output.scrollTop = output.scrollHeight;
 });
 
 socket.on('usernames', function(data){
     var html = '';
     for (user in data) {
         html += `
-        <li>
+        <li id = "usuario_${user}">
             <label>
                 <input type="radio" class="nes-radio is-white" name="answer-dark" />
                 <span>${data[user]}</span>  
