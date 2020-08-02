@@ -20,8 +20,6 @@ const io = SocketIO(server);
 
 
 io.on('connection', (socket) => {
-    //console.log('New connection', socket.id)
-    //console.log(users)
     socket.on('new_user', (data, callback) => {
         if(data in users){
             callback(false);
@@ -32,15 +30,11 @@ io.on('connection', (socket) => {
             io.sockets.emit('usernames', Object.keys(users));
         };
     });
+
     socket.on('chat_message', (data) => {
-        console.log(data.to);
-        
-        //io.sockets.emit('chat:message', data);
         data.pos="right";
         data.style="is-dark";
         io.to(users[data.username]).emit('chat:message', data);
-        //io.to(users[data.to]).emit('chat message', data);
-
         //cambiar posicion de burbuja
         data.pos= "left";
         data.style= "";

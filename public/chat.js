@@ -52,7 +52,7 @@ btn.addEventListener('click', function () {
         socket.emit('chat_message', {
             username: logged_user,
             message: message.value,
-            to: get_radio_value(), // destino
+            to: document.querySelector('input[name="selected"]:checked').value, // destino
             //posicion y estilo de burbuja
             pos:"" ,
             style:""
@@ -82,23 +82,16 @@ socket.on('chat:message', function(data){
 socket.on('usernames', function(data){
     var html = '';
     for (user in data) {
-        html += `
+        if(data[user]!= logged_user){
+            html += `
+            <li>
             <label>
                 <input type="radio" class="nes-radio is-white" name="selected" value="${data[user]}" />
                 <span>${data[user]}</span>  
-            </label>`
+            </label>
+            </li>`
+        }
+        
     };
     userslist.innerHTML = html;
 });
-
-
-function get_radio_value() {
-    var inputs = document.getElementsByName("selected");
-    for (var i = 0; i < inputs.length; i++) {
-      if (inputs[i].checked) {
-        return inputs[i].value;
-      }else{
-        return "";
-      }
-    }
-}
