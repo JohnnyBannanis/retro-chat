@@ -23,20 +23,19 @@ window.onload = function() {
 
 press.addEventListener('click', function () {
     if (username.value !== '' ) {
-        console.log(username.value);
-        socket.emit('new_user', username.value, function(data){
-            console.log(data);
-            if (data) {
-                if(username.value.length <9){
-                    logged_user= username.value;
-                    modal.style.display = "none";
-                }else{
-                    usererror.innerHTML = `<p class = "nes-text is-error"> That username is too long, Try a shorter one (less than 9 chars) </p>`;
+        if(username.value.length <9){
+            socket.emit('new_user', username.value, function(data){
+                console.log(data);
+                if (data) {
+                        logged_user= username.value;
+                        modal.style.display = "none";
+                } else {
+                    usererror.innerHTML = `<p class = "nes-text is-error"> That username is already taken </p>`;
                 };
-            } else {
-                usererror.innerHTML = `<p class = "nes-text is-error"> That username is already taken </p>`;
-            };
-        });
+            });
+        }else{
+            usererror.innerHTML = `<p class = "nes-text is-error"> That username is too long, Try a shorter one (less than 9 chars) </p>`;
+        };
     };
 });
 
@@ -58,6 +57,7 @@ btn.addEventListener('click', function () {
             style:""
         });
     };
+    message.value = "";
 });
 
 
@@ -75,7 +75,7 @@ socket.on('chat:message', function(data){
             <strong>${data.username}</strong>: ${data.message}
         </div>
     </div>`);
-    message.value = "";
+    
     output.scrollTop = output.scrollHeight;
 });
 
