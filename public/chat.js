@@ -8,6 +8,7 @@ let usererror = document.getElementById('usererror')
 let btn = document.getElementById('send');
 let output = document.getElementById('output');
 let actions = document.getElementById('actions');
+
 let userslist = document.getElementById('users-list');
 
 var modal = document.getElementById("nes-modal");
@@ -50,11 +51,15 @@ btn.addEventListener('click', function () {
     if (message.value !== '') {
         socket.emit('chat_message', {
             username: logged_user,
-            //username: "Test",
-            message: message.value
+            message: message.value,
+            to: get_radio_value(), // destino
+            //posicion y estilo de burbuja
+            pos:"" ,
+            style:""
         });
     };
 });
+
 
 message.addEventListener('keyup', (e) => {
     if (e.keyCode === 13 && message.value !== '') {
@@ -65,8 +70,8 @@ message.addEventListener('keyup', (e) => {
 socket.on('chat:message', function(data){
     output.insertAdjacentHTML("beforeend",
     `
-    <div class="message -left">
-        <div class="nes-balloon from-left">
+    <div class="message -${data.pos}">
+        <div class="nes-balloon from-${data.pos} ${data.style}"">
             <strong>${data.username}</strong>: ${data.message}
         </div>
     </div>`);
@@ -78,17 +83,22 @@ socket.on('usernames', function(data){
     var html = '';
     for (user in data) {
         html += `
-        <li id = "usuario_${user}">
             <label>
-                <input type="radio" class="nes-radio is-white" name="answer-dark" />
+                <input type="radio" class="nes-radio is-white" name="selected" value="${data[user]}" />
                 <span>${data[user]}</span>  
-            </label>
-        </li>`
+            </label>`
     };
     userslist.innerHTML = html;
 });
 
 
-// Listar a los que estan online
-
-// Separa los chats
+function get_radio_value() {
+    var inputs = document.getElementsByName("selected");
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].checked) {
+        return inputs[i].value;
+      }else{
+        return "";
+      }
+    }
+}
